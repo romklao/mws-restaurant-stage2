@@ -37,7 +37,9 @@
     </section>
   </main>
 
-  <script async defer src="https://maps.googleapis.com/maps/api/js?&libraries=places&key=AIzaSyBMB1yHMGPNVKBajvrGRizpMufnD4eN2hk&v=3&callback=initMap"></script>
+  <!-- Don't use async and defer with google maps apis because there is race condition
+       with installing initmap and usage of the google maps apis-->
+  <script src="https://maps.googleapis.com/maps/api/js?&libraries=places&key=AIzaSyBMB1yHMGPNVKBajvrGRizpMufnD4eN2hk&v=3"></script>
   <script src="js/dbhelper.js"></script>
   <script src="js/main.js"></script>
 
