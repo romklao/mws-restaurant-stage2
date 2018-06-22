@@ -18,7 +18,7 @@ p {
 }
 
 body {
-  background-color: #fdfdfd;
+  background-color: #f3f3f3;
   margin: 0;
   position: relative;
   height: 100%;
@@ -67,10 +67,6 @@ menu,
 nav,
 section {
   display: block;
-}
-
-#maincontent {
-  background-color: #f3f3f3;
 }
 
 .footer {
@@ -191,28 +187,27 @@ nav h1 a {
 /* ====================== Restaurant Listing ====================== */
 
 #restaurants-list {
-  background-color: #f3f3f3;
   list-style: outside none none;
   margin: 0;
   padding: 0;
-  width: 80%;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
-  padding: 35px 0 100px;
+  padding: 25px 0 100px;
 }
 
 /* Style grid layout */
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: minmax(8em, auto);
 }
 
 #restaurants-list li {
   background-color: #fff;
-  padding: 25px;
+  padding: 12px;
   text-align: left;
-  margin: 20px;
+  margin: 6px;
   -webkit-box-shadow: 0px 2px 5px 1px #CCC;
   box-shadow: 0px 2px 5px 1px #CCC;
 }
@@ -221,18 +216,18 @@ nav h1 a {
   background-color: #ccc;
   display: block;
   margin: 0;
-  width: 33vw;
-  height: 20vw;
+  width: 25vw;
+  height: 13vw;
   max-width: 100%;
 }
 
 #restaurants-list li h1 {
   color: #f18200;
-  font-size: 14pt;
+  font-size: 13pt;
   font-weight: 200;
   letter-spacing: 0;
-  line-height: 1.3;
-  margin: 20px 0 10px;
+  line-height: 1;
+  margin: 15px 0 7px;
   text-transform: uppercase;
 }
 
@@ -247,8 +242,8 @@ nav h1 a {
   color: #fff;
   display: inline-block;
   font-size: 10pt;
-  margin: 15px 0 0;
-  padding: 8px 30px 10px;
+  margin: 10px 0 0;
+  padding: 6px 15px 6px;
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
@@ -301,9 +296,8 @@ nav h1 a {
 
 #restaurant-img {
   width: 100%;
-  height: 40vw;
-/*  border-radius: 35px 0 35px 0;
-*/}
+  height: 37vw;
+}
 
 #restaurant-address {
   font-size: 12pt;
@@ -320,30 +314,27 @@ nav h1 a {
   padding: 2px 0;
   text-align: center;
   text-transform: uppercase;
-  width: 100%;
 }
 
 #restaurant-container, #reviews-container {
   border-bottom: 1px solid #d9d9d9;
   border-top: 1px solid #fff;
-  width: 100%;
+  width: 65%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #restaurant-container {
   position: relative;
-  width: 65%;
   top: 550px;
   text-align: center;
   padding-bottom: 25px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 #reviews-container {
   position: relative;
   top: 549px;
   padding-bottom: 90px;
-  background-color: #f3f3f3;
 }
 
 #reviews-container h2 {
@@ -376,11 +367,7 @@ nav h1 a {
 }
 
 #reviews-list {
-  margin: 0;
-  padding: 0;
-  width: 65%;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
 }
 
 #reviews-list li {
@@ -390,7 +377,6 @@ nav h1 a {
   list-style-type: none;
   margin: 0 0 30px;
   position: relative;
-  width: 100%;
 }
 
 #reviews-list div {
@@ -428,50 +414,22 @@ nav h1 a {
 }
 
 /* Queries */
-@media screen and (max-width: 465px) {
-  #restaurant-hours .time-col {
-    padding-right: 43px;
-  }
-}
 
-@media screen and (min-width: 466px) and (max-width: 520px) {
-  #restaurant-hours .time-col {
-    padding-right: 75px;
-  }
-}
-
-@media screen and (min-width: 520px) and (max-width: 650px) {
-  #restaurant-hours .time-col {
-    padding-right: 97px;
-  }
-}
-
-@media screen and (max-width: 570px) {
-  #restaurant-hours,
-  #restaurant-cuisine,
-  #reviews-list {
-    width: 90%;
-  }
+@media screen and (min-width: 650px) and (max-width: 850px) {
   #restaurant-img {
-    width: 90vw;
-    height: 60vw;
+    height: 45vw;
   }
 }
 
-@media screen and (max-width: 600px) {
-  #restaurants-list {
-    width: 100%;
-  }
-  #restaurants-list .restaurant-img {
-    width: 83.5vw;
-    height: 55vw;
+@media screen and (max-width: 649px) {
+  #restaurant-img {
+    height: 52vw;
   }
 }
 
-@media screen and (min-width: 601px) and (max-width: 949px) {
-  #restaurants-list .restaurant-img {
-    width: 65.5vw;
-    height: 43vw;
+@media screen and (max-width: 850px) {
+  #restaurant-container, #reviews-container {
+    width: 80%;
   }
 }
 
