@@ -10,6 +10,7 @@ var markers = []
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
 document.addEventListener('DOMContentLoaded', (event) => {
+  initMap();
   fetchNeighborhoods();
   fetchCuisines();
 });
@@ -78,7 +79,7 @@ let createRestaurantHTML = (restaurant) => {
   const li = document.createElement('li');
 
   const image = document.createElement('img');
-  image.className = 'restaurant-img';
+  image.className = 'restaurant-imgs';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
   image.alt = `${restaurant.name} is ${restaurant.cuisine_type} restaurant`;
   li.append(image);
@@ -171,7 +172,7 @@ let updateRestaurants = () => {
 /**
  * Initialize Google map, called from HTML.
  */
-window.initMap = () => {
+let initMap = () => {
   if (typeof google !== 'undefined') {
     let loc = {
       lat: 40.722216,
