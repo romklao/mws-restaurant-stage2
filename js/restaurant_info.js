@@ -90,7 +90,6 @@ let fillRestaurantHTML = (restaurant = self.restaurant) => {
   name.setAttribute('tabindex', '1');
 
   const image = document.getElementById('restaurant-img');
-  image.className = 'restaurant-img'
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
   image.alt = `${restaurant.name} is the ${restaurant.cuisine_type} restaurant`;
   image.setAttribute('tabindex', '2');
