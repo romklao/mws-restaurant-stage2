@@ -1,4 +1,4 @@
-'use strict'
+
 
 let restaurants,
     neighborhoods,
@@ -14,6 +14,25 @@ document.addEventListener('DOMContentLoaded', (event) => {
   fetchNeighborhoods();
   fetchCuisines();
 });
+
+/**
+ * Initialize Google map, called from HTML.
+ */
+let initMap = () => {
+  if (typeof google !== 'undefined') {
+    let loc = {
+      lat: 40.722216,
+      lng: -73.987501
+    };
+    self.map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 12,
+      center: loc,
+      scrollwheel: false
+    });
+    updateRestaurants();
+  }
+  updateRestaurants();
+}
 
 /**
  * Fetch all neighborhoods and set their HTML.
@@ -169,23 +188,5 @@ let updateRestaurants = () => {
   })
 }
 
-/**
- * Initialize Google map, called from HTML.
- */
-let initMap = () => {
-  if (typeof google !== 'undefined') {
-    let loc = {
-      lat: 40.722216,
-      lng: -73.987501
-    };
-    self.map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 12,
-      center: loc,
-      scrollwheel: false
-    });
-    updateRestaurants();
-  }
-  updateRestaurants();
-}
 
 
