@@ -1,7 +1,6 @@
-'use strict';
 
-let restaurant;
-let map;
+var restaurant;
+var map;
 
 /**
  * Initialize Google map, called from HTML.
