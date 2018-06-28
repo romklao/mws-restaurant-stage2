@@ -1,5 +1,8 @@
-'use strict';
 
+
+import idb from 'idb';
+
+var dbPromise;
 /**
  * Common database helper functions.
  */
@@ -14,24 +17,57 @@ class DBHelper {
     return `http://localhost:${port}/restaurants`;
   }
 
+  static openDatabase() {
+    if (!navigator.serviceWorker) {
+      return Promise.resolve();
+    }
+
+    return idb.open('restaurants', 1, function(upgradeDb) {
+      let store = upgradeDb.createObjectStore('restaurants', {
+        keyPath: 'id'
+      });
+    });
+  }
+
+  static getCachedRestaurants() {
+    dbPromise = DBHelper.openDatabase();
+    return dbPromise.then(function(db) {
+      let tx = db.transaction('restaurants', 'readwrite');
+      let restaurantsStore = tx.objectStore('restaurants');
+
+      return restaurantsStore.getAll();
+    })
+    .then(function(restaurants) {
+      console.log('Restaurants data', restaurants);
+    })
+  }
+
   /**
    * Fetch all restaurants.
    */
   static fetchRestaurants(callback) {
-    fetch(DBHelper.DATABASE_URL, {credentials: 'same-origin'})
-    .then(response => {
-      if (response.ok) {
-        return response;
+    DBHelper.getCachedRestaurants().then(function(data) {
+      if (data.length > 0) {
+        return callback(null, data);
       }
-      throw new Error('Network response was not ok.');
-    })
-    .then(response => response.json())
-    .then(restaurants => {
-      console.log('restaurants', restaurants);
-      callback(null, restaurants);
-    })
-    .catch(error => {
-      console.log('There has been a problem with your fetch operation: ', error.message);
+
+      fetch(DBHelper.DATABASE_URL, {credentials: 'same-origin'})
+      .then(response => {
+        if (response.ok) {
+          return response;
+        }
+        throw new Error('Network response was not ok.');
+      })
+      .then(response => response.json())
+      .then(restaurants => {
+        console.log('restaurants', restaurants);
+
+
+        callback(null, restaurants);
+      })
+      .catch(error => {
+        console.log('There has been a problem with your fetch operation: ', error.message);
+      })
     })
   }
 
@@ -189,3 +225,5 @@ if ('serviceWorker' in navigator) {
     });
   });
 }
+
+
