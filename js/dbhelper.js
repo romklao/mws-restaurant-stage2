@@ -1,6 +1,6 @@
 
 
-import idb from 'idb';
+//import idb from 'idb';
 
 var dbPromise;
 /**
@@ -17,39 +17,39 @@ class DBHelper {
     return `http://localhost:${port}/restaurants`;
   }
 
-  static openDatabase() {
-    if (!navigator.serviceWorker) {
-      return Promise.resolve();
-    }
+  // static openDatabase() {
+  //   if (!navigator.serviceWorker) {
+  //     return Promise.resolve();
+  //   }
 
-    return idb.open('restaurants', 1, function(upgradeDb) {
-      let store = upgradeDb.createObjectStore('restaurants', {
-        keyPath: 'id'
-      });
-    });
-  }
+  //   return idb.open('restaurants', 1, function(upgradeDb) {
+  //     let store = upgradeDb.createObjectStore('restaurants', {
+  //       keyPath: 'id'
+  //     });
+  //   });
+  // }
 
-  static getCachedRestaurants() {
-    dbPromise = DBHelper.openDatabase();
-    return dbPromise.then(function(db) {
-      let tx = db.transaction('restaurants', 'readwrite');
-      let restaurantsStore = tx.objectStore('restaurants');
+  // static getCachedRestaurants() {
+  //   dbPromise = DBHelper.openDatabase();
+  //   return dbPromise.then(function(db) {
+  //     let tx = db.transaction('restaurants', 'readwrite');
+  //     let restaurantsStore = tx.objectStore('restaurants');
 
-      return restaurantsStore.getAll();
-    })
-    .then(function(restaurants) {
-      console.log('Restaurants data', restaurants);
-    })
-  }
+  //     return restaurantsStore.getAll();
+  //   })
+  //   .then(function(restaurants) {
+  //     console.log('Restaurants data', restaurants);
+  //   })
+  // }
 
   /**
    * Fetch all restaurants.
    */
   static fetchRestaurants(callback) {
-    DBHelper.getCachedRestaurants().then(function(data) {
-      if (data.length > 0) {
-        return callback(null, data);
-      }
+    // DBHelper.getCachedRestaurants().then(function(data) {
+    //   if (data.length > 0) {
+    //     return callback(null, data);
+    //   }
 
       fetch(DBHelper.DATABASE_URL, {credentials: 'same-origin'})
       .then(response => {
@@ -68,7 +68,7 @@ class DBHelper {
       .catch(error => {
         console.log('There has been a problem with your fetch operation: ', error.message);
       })
-    })
+    // })
   }
 
   /**
