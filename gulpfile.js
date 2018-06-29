@@ -31,21 +31,23 @@ gulp.task('scripts:main', function() {
     .pipe(source('main_bundle.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init())
+    .pipe(babel())
     .pipe(uglify())
     .pipe(sourcemaps.write('maps')) // You need this if you want to continue using the stream with other plugins
     .pipe(gulp.dest('./bundle_js'));
 });
 
 gulp.task('scripts:restaurant', function() {
-  browserify({
-    extensions: [".babel"]
-  }).transform("babelify", {
-    extensions: [".babel"]
-  })
-  .bundle()
+    browserify({
+      extensions: [".babel"]
+    }).transform("babelify", {
+      extensions: [".babel"]
+    })
+    .bundle()
     .pipe(source('restaurant_bundle.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init())
+    .pipe(babel())
     .pipe(uglify())
     .pipe(sourcemaps.write('maps')) // You need this if you want to continue using the stream with other plugins
     .pipe(gulp.dest('dist/js'))
